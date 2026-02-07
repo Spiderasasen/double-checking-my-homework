@@ -92,6 +92,49 @@ def question3(message: List[str]):
 
     return True
 
+#question 4; the letter has occurded before and also has a min len of 2
+def question4(message: List[str]):
+    print("the letter has occurded before and also has a min len of 2")
+    new_message = []
+
+
+    if len(message) < 2:
+        return False
+
+    symbol = 0
+    a_first_time = 0
+    b_first_time = 0
+
+    for char in message:
+        if symbol == 0:
+            new_message.append(char)
+            symbol = 1
+        elif symbol == 1:
+            #first time the letter has been introduced
+            if char == "a" and a_first_time == 0:
+                new_message.append(char)
+                a_first_time += 1
+                continue
+            elif char == "b" and b_first_time == 0:
+                new_message.append(char)
+                b_first_time += 1
+                continue
+
+            #the letter has been seen before
+            if char == "a" and a_first_time > 0:
+                if b_first_time > 0:
+                    return True
+                else:
+                    return False
+            elif char == "b" and b_first_time > 0:
+                #check if other latter has also been caled
+                if a_first_time > 0:
+                    return True
+                else:
+                    return False
+
+    return False
+
 def main():
     message_input = input("Please enter a message: \n")
     try:
@@ -99,6 +142,7 @@ def main():
         print(even_odd(message))
         print(question2(message))
         print(question3(message))
+        print(question4(message))
     except TypeError:
         print("Please enter a valid message")
 
