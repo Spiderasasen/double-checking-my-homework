@@ -1,4 +1,3 @@
-import sys
 from typing import List
 
 
@@ -135,6 +134,41 @@ def question4(message: List[str]):
 
     return False
 
+#ends with the string abab
+def question5(message: List[str]):
+    print("ends with the string abab")
+    new_message = []
+    ending_count = 0
+    for char in message:
+        #ending code
+        if char == "a" or (ending_count == 1 and char == "a"):
+            new_message.append(char)
+            ending_count += 1
+        elif char == "b":
+            new_message.append(char)
+            ending_count += 1
+        else:
+            #if the next message is an a, it goes to potion 1, otherwise, strart from the begiening
+            if ending_count > 4:
+                if char == "a":
+                    ending_count = 1
+                else:
+                    ending_count = 0
+                continue
+            #if the next letter is an a(which should be beacuse of how i structed the ending code) it will return to postion 1
+            elif ending_count == 1 or ending_count == 3:
+                new_message.append(char)
+                ending_count = 1
+                continue
+            #if postion 2 typed a b, it will return to postion 0
+            elif ending_count == 2:
+                new_message.append(char)
+                ending_count = 0
+                continue
+
+    return new_message
+
+
 def main():
     message_input = input("Please enter a message: \n")
     try:
@@ -143,6 +177,7 @@ def main():
         print(question2(message))
         print(question3(message))
         print(question4(message))
+        print(question5(message))
     except TypeError:
         print("Please enter a valid message")
 
