@@ -1,3 +1,6 @@
+from typing import List
+
+
 #checks if the message is only a's or b's
 def is_correct_format(message: str):
     #checks if it has numbers
@@ -15,9 +18,41 @@ def is_correct_format(message: str):
     else:
         return "Please enter a valid message"
 
+#orginazes the letters
+def orginize(message: List[str]):
+    # making 2 catigories
+    a = []
+    b = []
+
+    # adds all the letters into the correct system
+    for char in message:
+        if char == "a":
+            a.append(char)
+        elif char == "b":
+            b.append(char)
+
+    return a, b
+
+#checks if the message has an even amount of a's and a odd amount of b's
+def even_odd(message: List[str]):
+    print("Even and Odd characters problem")
+    a, b = orginize(message)
+    print(f"A: {a}\nB: {b}")
+    if a == b:
+        return False
+    else:
+        if len(a) % 2 == 0:
+            if len(b) % 2 == 1:
+                return True
+            else:
+                return False
+        else:
+            return False
+
 def main():
-    question = is_correct_format("abc")
-    print(question)
+    message_input = input("Please enter a message: \n")
+    message = is_correct_format(message_input)
+    print(even_odd(message))
 
 if __name__ == '__main__':
     main()
