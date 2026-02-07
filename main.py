@@ -65,12 +65,40 @@ def question2(message: List[str]):
     else:
         return False
 
+#question 3, every second symbol has to be an a and it cant be anything less then 2
+def question3(message: List[str]):
+    print("every second symbol has to be an a and it cant be anything less then 2")
+    new_message = []
+
+    #checking the length of the message
+    if len(message) < 2:
+        return False
+
+    symbol = 0
+    #loops through the whole list
+    for char in message:
+        # print(char)
+        #checking if the symbole is 0, just add
+        if symbol == 0:
+            new_message.append(char)
+            symbol = 1
+        #if the symbole is 1, check if its an a
+        elif symbol == 1:
+            if char == "a":
+                new_message.append(char)
+                symbol = 0
+            else:
+                return False
+
+    return True
+
 def main():
     message_input = input("Please enter a message: \n")
     try:
         message = is_correct_format(message_input)
         print(even_odd(message))
         print(question2(message))
+        print(question3(message))
     except TypeError:
         print("Please enter a valid message")
 
