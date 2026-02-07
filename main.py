@@ -49,10 +49,26 @@ def even_odd(message: List[str]):
         else:
             return False
 
+#question 2, has a min length of 3, and even a's
+def question2(message: List[str]):
+    print("Question 2 problem, mas a minimum length of 3 and an even number of a's in the langague")
+    a, b = orginize(message)
+    print(f"A: {a}\nB: {b}")
+
+    #actual code
+    if len(message) >= 3:
+        if len(a) % 2 == 0:
+            return True
+        else:
+            return False
+    else:
+        return False
+
 def main():
     message_input = input("Please enter a message: \n")
     message = is_correct_format(message_input)
     print(even_odd(message))
+    print(question2(message))
 
 if __name__ == '__main__':
     main()
