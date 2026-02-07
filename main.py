@@ -1,3 +1,4 @@
+import sys
 from typing import List
 
 
@@ -16,7 +17,7 @@ def is_correct_format(message: str):
         return string_list
 
     else:
-        return "Please enter a valid message"
+        return False
 
 #orginazes the letters
 def orginize(message: List[str]):
@@ -66,9 +67,12 @@ def question2(message: List[str]):
 
 def main():
     message_input = input("Please enter a message: \n")
-    message = is_correct_format(message_input)
-    print(even_odd(message))
-    print(question2(message))
+    try:
+        message = is_correct_format(message_input)
+        print(even_odd(message))
+        print(question2(message))
+    except TypeError:
+        print("Please enter a valid message")
 
 if __name__ == '__main__':
     main()
